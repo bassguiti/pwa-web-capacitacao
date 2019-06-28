@@ -1,2 +1,47 @@
-<p>home works!</p>
-<button mat-raised-button color="primary">Sou um botao bonito</button>
+<div class="container">
+    <mat-card>
+        <form>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Id da Task" value="">
+            </mat-form-field>
+            
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Titulo da Task" value="">
+            </mat-form-field>
+            
+            <mat-form-field class="full-width">
+                <input matInput placeholder="Descrição" value="">
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <input matInput [matDatepicker]="picker" placeholder="Data da Task">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <div class="center-text">
+                <mat-checkbox color="primary">Concluído</mat-checkbox>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Grau de prioridade</mat-label>
+                <mat-select>
+                    <mat-option value="Alta">
+                        Alta
+                    </mat-option>
+                    <mat-option value="Media">
+                        Media
+                    </mat-option>
+                    <mat-option value="Baixa">
+                        Baixa
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+        <mat-card-actions class="center-text">
+            <button mat-raised-button color="primary" class="full-width" (click)="doRequest()">Cadastrar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<ngx-loading [show]="loading"></ngx-loading>

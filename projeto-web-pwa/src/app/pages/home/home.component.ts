@@ -1,3 +1,4 @@
+import { TaskService } from 'src/app/services/task.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  public loading: boolean = false;
 
-  constructor() { }
+  constructor(
+    private taskService: TaskService
+  ) { }
 
   ngOnInit() {
   }
 
+  public doRequest(): void{
+    this.loading = true;
+    this.taskService.createTask({
+      teste: "teste"
+    })
+      .subscribe((data) => {
+        this.loading = false;
+        console.log(data);
+      },(error) => {
+        this.loading = false;
+        console.log(error);
+      });
+  }
 }
