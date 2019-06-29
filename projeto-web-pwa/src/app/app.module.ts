@@ -24,6 +24,9 @@ import { MatSidenavModule, MatTabsModule, MatInputModule, MatDatepickerModule, M
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxLoadingModule,ngxLoadingAnimationTypes } from 'ngx-loading';
 import { HttpClientModule } from '@angular/common/http';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -72,7 +75,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule
-]})
+],
+  imports: [ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })]})
 export class MaterialModule {}
 
 @NgModule({
@@ -97,7 +101,9 @@ export class MaterialModule {}
     }),
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
